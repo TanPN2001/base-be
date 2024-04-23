@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "attach",
+            "name": "Debug f-connect",
+            "restart": true,
+            "port": 9239,
+            //"remoteRoot": "/app/src",
+            "localRoot": "${workspaceFolder}/src"
+        },
+    ]
+}
