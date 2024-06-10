@@ -1,4 +1,3 @@
-
 const db = require("../../services/database");
 const user = require("../../entities/user");
 
@@ -29,5 +28,3 @@ exports.cmsDeleteUser = async (userId) => {
 exports.cmsGetUserWithId = async (userId) => {
   return db.Users.findOne({ where: { userId: userId } });
 };
-
-

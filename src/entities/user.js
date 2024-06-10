@@ -26,7 +26,6 @@ module.exports = (sequelize, Sequelize) => {
       },
       createTime: {
         type: DataTypes.DATE,
-
       },
       activationDate: {
         type: DataTypes.DATE,
@@ -36,14 +35,12 @@ module.exports = (sequelize, Sequelize) => {
       },
       idNumber: {
         type: DataTypes.STRING(20),
-
       },
       type: {
         type: DataTypes.STRING(32),
       },
       nickname: {
         type: DataTypes.STRING(255),
-
       },
       username: {
         type: DataTypes.STRING(128),
@@ -55,7 +52,7 @@ module.exports = (sequelize, Sequelize) => {
     {
       timestamps: false,
       tableName: "users",
-    }
+    },
   );
   // User.prototype.toJSON = function () {
   //   var values = Object.assign({}, this.get());

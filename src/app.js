@@ -28,7 +28,7 @@ app.use(cookieParser());
 app.use(
   bodyParser.json({
     limit: "128mb",
-  })
+  }),
 );
 app.use(bodyParser.xml());
 app.use(
@@ -36,7 +36,7 @@ app.use(
     extended: true,
     limit: "128mb",
     parameterLimit: 128000,
-  })
+  }),
 );
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -46,7 +46,7 @@ app.use(
   fileUpload({
     createParentPath: true,
     parseNested: true,
-  })
+  }),
 );
 app.use(i18n.init);
 

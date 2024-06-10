@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 //During the test the env variable is set to test
 
 //Require the dev-dependencies

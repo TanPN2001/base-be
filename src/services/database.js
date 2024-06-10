@@ -17,7 +17,7 @@ const sequelize = new Sequelize(
   process.env.DB_NAME,
   process.env.DB_USER,
   process.env.DB_PASS,
-  sequelizeConfig
+  sequelizeConfig,
 );
 
 const db = {};
@@ -26,7 +26,6 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.Users = require("../entities/user")(sequelize);
-
 
 Object.keys(db).forEach((modelName) => {
   if (db[modelName]?.associate) {

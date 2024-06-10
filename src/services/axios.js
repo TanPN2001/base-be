@@ -16,7 +16,7 @@ module.exports.axiosClient = (retry = 0) => {
     onRetry: (retryCount, error, requestConfig) => {
       console.error(
         TAG,
-        `Axios client retry retryCount:${retryCount},error:${error},requestConfig:${requestConfig}`
+        `Axios client retry retryCount:${retryCount},error:${error},requestConfig:${requestConfig}`,
       );
       return;
     },

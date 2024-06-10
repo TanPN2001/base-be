@@ -11,7 +11,6 @@ const {
   LIMIT_PAGINATION,
 } = require("../configs/constants/others.constant");
 
-
 module.exports.test = async (req, res) => {
   try {
     return res.json({ message: "Users Module ready!!!" });
@@ -21,8 +20,7 @@ module.exports.test = async (req, res) => {
       utils.responseFailed(err.ERROR_SERVER_INTERNAL.code, {
         message:
           error?.message ?? res.__(err.ERROR_SERVER_INTERNAL.description),
-      })
+      }),
     );
   }
 };
-

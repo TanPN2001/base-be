@@ -29,7 +29,7 @@ var transport = new transports.DailyRotateFile({
     timestamp({ format: "YYYY-MM-DD HH:mm:ss.SSS" }),
     utilFormatter(), // <-- this is what changed
     // colorize({ all: true }),
-    customFormat
+    customFormat,
   ),
   maxSize: "20m",
   maxFiles: "14d",
@@ -43,7 +43,7 @@ var transportError = new transports.DailyRotateFile({
     timestamp({ format: "YYYY-MM-DD HH:mm:ss.SSS" }),
     utilFormatter(), // <-- this is what changed
     // colorize({ all: true }),
-    customFormat
+    customFormat,
   ),
   maxSize: process.env.LOG_MAX_SIZE ?? "20m",
   maxFiles: process.env.LOG_MAX_DAY ?? "14d",
@@ -55,7 +55,7 @@ var transportConsole = new transports.Console({
     timestamp({ format: "YYYY-MM-DD HH:mm:ss.SSS" }),
     utilFormatter(), // <-- this is what changed
     colorize({ all: true }),
-    customFormat
+    customFormat,
   ),
 });
 const transportList = [];

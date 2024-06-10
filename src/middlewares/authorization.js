@@ -1,153 +1,81 @@
-/*
-
-COPYRIGHT NOTICE
-THONG BAO BAN QUYEN
-
-D&K APPLICATION SERVER
-
-
-Copyright MDC MEDIA CO.,LTD 2022 Alright Reversed
-Toan bo quyen so huu tri tue thuoc ve cong ty TNHH Cong nghe va Truyen thong MDC Viet Nam
-
-Viec sao chep, su dung ma khong co su cho phep bang van ban cua cong ty la viec vi pham luat so huu tri tue cua Viet Nam
-Unauthorized distribution without prior written by MDC MEDIA CO.,LTD is violating copyright law in Viet Nam
-
-*/
 var path = require("path");
 const TAG = "[" + "midddlewares/" + path.basename(__filename) + "]";
 const db = require("../services/database");
 const err = require("../configs/error");
+const { responseFailed } = require("../utils/utils");
 // const { rd } = require("../services/redis.js");
 
 async function checkAuthorizationToken(req, res, next) {
+  // let token = req.headers["apisecret"];
+  // console.log(TAG, ` - [HTTP] Processing request ${req.path}...`);
+  // if (token != null) {
+  //   //token = token[0];
+  //   token = token.trim();
 
-  let token = req.headers["apisecret"];
-  console.log(TAG, ` - [HTTP] Processing request ${req.path}...`);
-  if (token != null) {
-    //token = token[0];
-    token = token.trim();
+  //   let userId = req.headers["userid"];
+  //   if (userId == null) {
+  //     return res.status(401).json(
+  //       responseFailed(err.ERROR_MISSING_PARAMS.code, {
+  //         message: res.__(err.ERROR_MISSING_PARAMS.description),
+  //       }))
+  //   }
+  //   // TEST BEGIN
 
-    let userId = req.headers["userid"];
-    if (userId == null) {
-      return res.json(
-        utils.status(401).json(responseFailed(err.ERROR_MISSING_PARAMS.code, {
-          message: res.__(err.ERROR_MISSING_PARAMS.description),
-        })))
+  //   var rdApiSecret = await rd.get(
+  //     `${process.env.REDIS_KEY_PREFIX}:Session:${userId}`
+  //   );
+  //   if (rdApiSecret == null || rdApiSecret != token) {
+  //     return res.json(
+  //       responseFailed(err.ERROR_INVALID_ACCESS_TOKEN.code, {
+  //         message: res.__(err.ERROR_INVALID_ACCESS_TOKEN.description),
+  //       }))
+  //   }
 
-    }
-    // TEST BEGIN
+  //   // TEST END
+  //   req.userId = userId; // Mark as authorized user
+  //   let user = await db.V1_User.findOne({
+  //     where: {
+  //       id: userId,
+  //     },
+  //     raw: true,
+  //   });
+  //   if (user == null) {
 
-    var rdApiSecret = await rd.get(
-      `${process.env.REDIS_KEY_PREFIX}:Session:${userId}`
-    );
-    if (rdApiSecret == null || rdApiSecret != token) {
-      return res.json(
-        utils.status(401).json(responseFailed(err.ERROR_INVALID_ACCESS_TOKEN.code, {
-          message: res.__(err.ERROR_INVALID_ACCESS_TOKEN.description),
-        })))
-    }
+  //     return res.json(
+  //       utils.status(401).json(responseFailed(err.ERROR_USER_NOT_FOUND.code, {
+  //         message: res.__(err.ERROR_USER_NOT_FOUND.description),
+  //       })))
+  //   }
+  //   if (user.type != "SAYMEE") {
+  //     // GAF user => Renew apisecret in cache for 24h more
+  //     await rd.expire(
+  //       `${process.env.REDIS_KEY_PREFIX}:Session:${user.id}`,
+  //       24 * 3600
+  //     );
+  //   }
 
-    // TEST END
-    req.userId = userId; // Mark as authorized user
-    let user = await db.V1_User.findOne({
-      where: {
-        id: userId,
-      },
-      raw: true,
-    });
-    if (user == null) {
+  //   req.user = user;
+  //   next();
+  // } else {
+  //   var response = {
+  //     result: "failed",
+  //     reason: err.ERROR_MISSING_TOKEN.description,
+  //     code: err.ERROR_MISSING_TOKEN.code,
+  //     errors: [
+  //       {
+  //         code: err.ERROR_MISSING_TOKEN.code,
+  //         message: err.ERROR_MISSING_TOKEN.description,
+  //       },
+  //     ],
+  //   };
+  //   return res.json(
+  //     utils.status(400).json(responseFailed(err.ERROR_MISSING_ACCESS_TOKEN.code, {
+  //       message: res.__(err.ERROR_MISSING_ACCESS_TOKEN.description),
+  //     })))
 
-      return res.json(
-        utils.status(401).json(responseFailed(err.ERROR_USER_NOT_FOUND.code, {
-          message: res.__(err.ERROR_USER_NOT_FOUND.description),
-        })))
-    }
-    if (user.type != "SAYMEE") {
-      // GAF user => Renew apisecret in cache for 24h more
-      await rd.expire(
-        `${process.env.REDIS_KEY_PREFIX}:Session:${user.id}`,
-        24 * 3600
-      );
-    }
+  // }
 
-    req.user = user;
-    next();
-  } else {
-    var response = {
-      result: "failed",
-      reason: err.ERROR_MISSING_TOKEN.description,
-      code: err.ERROR_MISSING_TOKEN.code,
-      errors: [
-        {
-          code: err.ERROR_MISSING_TOKEN.code,
-          message: err.ERROR_MISSING_TOKEN.description,
-        },
-      ],
-    };
-    return res.json(
-      utils.status(400).json(responseFailed(err.ERROR_MISSING_ACCESS_TOKEN.code, {
-        message: res.__(err.ERROR_MISSING_ACCESS_TOKEN.description),
-      })))
-
-  }
+  next();
 }
 
 module.exports.checkAuthorizationToken = checkAuthorizationToken;
-
-async function checkAdminAuthorizationToken(req, res, next) {
-  // let tokenStr = req.headers["authorization"];
-  // let token = tokenStr!=null?tokenStr.match("(?<=Bearer).*$"):null;
-  let token = req.headers["apisecret"];
-  console.log(TAG, ` - [HTTP] Processing request ${req.baseUrl + req.path}...`);
-  if (token != null) {
-    //token = token[0];
-    token = token.trim();
-
-    /*
-    let userId = req.headers["userid"];
-    if (userId == null) {
-    response = {
-      result: "failed",
-      reason: err.ERROR_MISSING_PARAMETERS.description,
-      code: err.ERROR_MISSING_PARAMETERS.code,
-      detail: "Thiếu userid ở header",
-    };
-    res.send(JSON.stringify(responseMsg));
-    return;
-    }
-    */
-    // TEST BEGIN
-
-    var key = `${process.env.REDIS_KEY_PREFIX}CMS:Session:${token}`;
-    var rdCMSAdmin = await rd.get(key);
-    if (rdCMSAdmin == null) {
-
-      console.log(TAG, `Token ${token} not found in redis cache !`);
-      return res.json(
-        utils.status(401).json(responseFailed(err.ERROR_INVALID_ACCESS_TOKEN.code, {
-          message: res.__(err.ERROR_INVALID_ACCESS_TOKEN.description),
-        })))
-      return;
-    }
-
-    try {
-      rdCMSAdmin = JSON.parse(rdCMSAdmin);
-      // TEST END
-      req.userId = rdCMSAdmin.userId; // Mark as authorized user
-      req.user = rdCMSAdmin;
-      // TODO: VERIFY CMS API PERMISSION PATH
-      next();
-    } catch (e) {
-      return res.json(
-        utils.status(400).json(responseFailed(err.ERROR_SERVER_INTERNAL.code, {
-          message: res.__(err.ERROR_SERVER_INTERNAL.description),
-        })))
-    }
-  } else {
-    return res.json(
-      utils.status(400).json(responseFailed(err.ERROR_MISSING_ACCESS_TOKEN.code, {
-        message: res.__(err.ERROR_MISSING_ACCESS_TOKEN.description),
-      })))
-  }
-}
-module.exports.checkAdminAuthorizationToken = checkAdminAuthorizationToken;

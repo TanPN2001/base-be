@@ -4,7 +4,9 @@
     "dev": "nodemon --inspect=9239 bin/server-name",
     "swagger": "node ./src/swagger.js",
     "test": "NODE_ENV=test mocha --timeout 10000 src/test",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix"
+    "lint": "eslint --fix",
+    "prettier:fix": "prettier --write \"src/**\"",
+    "prepare": "husky"
   },
   "dependencies": {
     "@types/lodash": "^4.17.0",
@@ -39,6 +41,7 @@
     "oracledb": "file:../node-oracledb",
     "pg": "^8.11.3",
     "pg-hstore": "^2.3.4",
+    "prettier": "^3.3.1",
     "query-string": "^7.1.2",
     "redis": "^4.6.12",
     "sequelize": "^6.25.6",
@@ -58,7 +61,13 @@
     "chai-http": "^2.0.1",
     "cross-env": "^7.0.3",
     "eslint": "^9.4.0",
+    "eslint-config-prettier": "^9.1.0",
     "globals": "^15.4.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.5",
     "mocha": "^2.4.5"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
   }
 }
