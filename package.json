@@ -3,7 +3,8 @@
     "start": "node bin/server-name",
     "dev": "nodemon --inspect=9239 bin/server-name",
     "swagger": "node ./src/swagger.js",
-    "test": "NODE_ENV=test mocha --timeout 10000 src/test"
+    "test": "NODE_ENV=test mocha --timeout 10000 src/test",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix"
   },
   "dependencies": {
     "@types/lodash": "^4.17.0",
@@ -52,9 +53,12 @@
     "xml2js": "^0.6.2"
   },
   "devDependencies": {
+    "@eslint/js": "^9.4.0",
     "chai": "^3.5.0",
     "chai-http": "^2.0.1",
     "cross-env": "^7.0.3",
+    "eslint": "^9.4.0",
+    "globals": "^15.4.0",
     "mocha": "^2.4.5"
   }
 }
