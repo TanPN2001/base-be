@@ -6,7 +6,7 @@
     "test": "NODE_ENV=test mocha --timeout 10000 src/test",
     "lint": "eslint --fix",
     "prettier:fix": "prettier --write \"src/**\"",
-    "prepare": "husky"
+    "prepare": "husk install"
   },
   "dependencies": {
     "@types/lodash": "^4.17.0",
