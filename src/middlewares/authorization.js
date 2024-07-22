@@ -41,12 +41,10 @@ async function checkAuthorizationToken(req, res, next) {
       raw: true,
     });
     if (user == null) {
-      return res.json(
-        utils.status(401).json(
-          responseFailed(err.ERROR_USER_NOT_FOUND.code, {
-            message: res.__(err.ERROR_USER_NOT_FOUND.description),
-          }),
-        ),
+      return res.status(401).json(
+        responseFailed(err.ERROR_USER_NOT_FOUND.code, {
+          message: res.__(err.ERROR_USER_NOT_FOUND.description),
+        }),
       );
     }
     if (user.type != 'SAYMEE') {
@@ -71,12 +69,10 @@ async function checkAuthorizationToken(req, res, next) {
         },
       ],
     };
-    return res.json(
-      utils.status(400).json(
-        responseFailed(err.ERROR_MISSING_ACCESS_TOKEN.code, {
-          message: res.__(err.ERROR_MISSING_ACCESS_TOKEN.description),
-        }),
-      ),
+    return res.status(400).json(
+      responseFailed(err.ERROR_MISSING_ACCESS_TOKEN.code, {
+        message: res.__(err.ERROR_MISSING_ACCESS_TOKEN.description),
+      }),
     );
   }
 
