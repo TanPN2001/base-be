@@ -13,7 +13,6 @@ const {
 
 module.exports.test = async (req, res) => {
   try {
-    console.log('123 123');
     return res.json({ message: 'Users Module ready!!!' });
   } catch (error) {
     console.error(TAG, error);
