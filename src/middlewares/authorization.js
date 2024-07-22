@@ -69,7 +69,7 @@ async function checkAuthorizationToken(req, res, next) {
         },
       ],
     };
-    log asd
+
     return res.status(400).json(
       responseFailed(err.ERROR_MISSING_ACCESS_TOKEN.code, {
         message: res.__(err.ERROR_MISSING_ACCESS_TOKEN.description),
