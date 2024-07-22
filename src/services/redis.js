@@ -1,4 +1,4 @@
-const Redis = require("ioredis");
+const Redis = require('ioredis');
 
 const rd = new Redis({
   sentinels: [
@@ -9,22 +9,22 @@ const rd = new Redis({
       db: process.env.REDIS_DB,
     },
   ],
-  name: "saymee-redis",
+  name: process.env.REDIS_NAME,
   password: process.env.REDIS_PASSWORD,
   db: process.env.REDIS_DB,
 });
 console.log(
-  "REDIS",
+  'REDIS',
   `Initializing connection to redis sentinel server ${process.env.REDIS_SENTINEL_HOST}:${process.env.REDIS_SENTINEL_PORT}`,
 );
-rd.on("connect", () => {
+rd.on('connect', () => {
   console.log(
-    "REDIS",
+    'REDIS',
     `Connected to redis sentinel server ${process.env.REDIS_SENTINEL_HOST}:${process.env.REDIS_SENTINEL_PORT}`,
   );
 });
-rd.on("error", (err) => {
-  console.log("REDIS", `Failed to connect to redis sentinel server.${err}`);
+rd.on('error', err => {
+  console.log('REDIS', `Failed to connect to redis sentinel server.${err}`);
 });
 
 module.exports.rd = rd;

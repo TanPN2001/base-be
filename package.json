@@ -32,6 +32,7 @@
     "form-data": "^4.0.0",
     "i18n": "^0.15.1",
     "ioredis": "^5.2.4",
+    "jimp": "^0.22.12",
     "jsonwebtoken": "^9.0.2",
     "jwks-rsa": "^3.1.0",
     "lodash": "^4.17.21",
@@ -57,6 +58,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.4.0",
+    "@types/node": "^20.14.8",
     "chai": "^3.5.0",
     "chai-http": "^2.0.1",
     "cross-env": "^7.0.3",

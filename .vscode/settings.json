@@ -1,8 +1,8 @@
 {
-	"cSpell.words": ["Gami", "meetik", "UMEE"],
+  "cSpell.words": ["Gami", "meetik", "UMEE"],
 
-	"editor.codeActionsOnSave": {
-		"source.fixAll.eslint": true
-	},
-	"eslint.validate": ["javascript"]
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "eslint.validate": ["javascript"]
 }
