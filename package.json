@@ -8,6 +8,22 @@
     "prettier:fix": "prettier --write \"src/**\"",
     "prepare": "husk install"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{html,css,less,ejs}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
   "dependencies": {
     "@types/lodash": "^4.17.0",
     "async-lock": "^1.4.0",
@@ -68,8 +84,5 @@
     "husky": "^9.0.11",
     "lint-staged": "^15.2.5",
     "mocha": "^2.4.5"
-  },
-  "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown"
   }
 }
