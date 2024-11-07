@@ -8,7 +8,7 @@ var app = require("../src/app");
 var http = require("http");
 
 //init database
-const db = require("../src/services/database");
+// const db = require("../src/services/database");
 // const redis = require("../src/services/redis");
 const moment = require("moment");
 moment.tz.setDefault("Asia/Ho_Chi_Minh");
@@ -20,19 +20,19 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 initServer();
 async function initServer() {
   let initDB = false;
-  while (!initDB) {
-    try {
-      await db.sequelize.sync({
-        // force: true,
-        // alter: true,
-      });
-      initDB = true;
-    } catch (error) {
-      console.error(TAG, error);
-      console.error(TAG, `Can't connect to database retry in 5s`);
-      await sleep(5000);
-    }
-  }
+  // while (!initDB) {
+  //   try {
+  //     await db.sequelize.sync({
+  //       // force: true,
+  //       // alter: true,
+  //     });
+  //     initDB = true;
+  //   } catch (error) {
+  //     console.error(TAG, error);
+  //     console.error(TAG, `Can't connect to database retry in 5s`);
+  //     await sleep(5000);
+  //   }
+  // }
 
   var port = normalizePort(process.env.PORT || "3000");
   app.set("port", port);

@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "start": "node algorithm.js",
-    "dev": "nodemon algorithm.js",
+    "start": "node bin/server-name",
+    "dev": "nodemon server-name",
     "swagger": "node ./src/swagger.js",
     "test": "NODE_ENV=test mocha --timeout 10000 src/test",
     "lint": "eslint --fix",
