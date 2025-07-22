@@ -5,8 +5,7 @@
     "swagger": "node ./src/swagger.js",
     "test": "NODE_ENV=test mocha --timeout 10000 src/test",
     "lint": "eslint --fix",
-    "prettier:fix": "prettier --write \"src/**\"",
-    "prepare": "husk install"
+    "prettier:fix": "prettier --write \"src/**\""
   },
   "husky": {
     "hooks": {
@@ -38,7 +37,7 @@
     "csvtojson": "^2.0.10",
     "dateformat": "^5.0.3",
     "dayjs": "^1.11.6",
-    "dotenv": "^16.0.3",
+    "dotenv": "^16.6.1",
     "elastic-apm-node": "^4.4.0",
     "express": "^4.18.2",
     "express-fileupload": "^1.4.0",
@@ -46,8 +45,9 @@
     "fast-xml-parser": "^4.2.7",
     "firebase-admin": "^11.4.1",
     "form-data": "^4.0.0",
+    "husk": "^0.5.3",
     "i18n": "^0.15.1",
-    "ioredis": "^5.2.4",
+    "ioredis": "^5.6.1",
     "jimp": "^0.22.12",
     "jsonwebtoken": "^9.0.2",
     "jwks-rsa": "^3.1.0",
